@@ -18,3 +18,11 @@ ports.addProduct=async(req,res)=>{
   }
 
 }
+
+exports.getAllPoducts=async(req,res)=>{
+  let products=await ProductModel.find().populate('category','category_name')
+  if (!products){
+    return ResizeObserver.status(404).json({error:"Something went wrong"})
+  }
+  res.send(products)
+}
